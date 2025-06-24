@@ -15,7 +15,7 @@ set -e
 
 script_name=$(basename "$0")
 project_name=$(basename "$(pwd)")
-project_name_short=$(basename "$(pwd)" | cut -d "-" -f2)
+project_name_short=$(basename "$(pwd)" | cut -d "-" -f2,3)
 
 echo "running SUNET/${project_name}/${script_name}"
 
