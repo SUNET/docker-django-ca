@@ -1,6 +1,6 @@
 ARG DJANGO_CA_VERSION=2.2.1
-ARG DJANGO_CA_CMC_VERSION=0.0.1
 FROM mathiasertl/django-ca:${DJANGO_CA_VERSION} AS build
+ARG DJANGO_CA_CMC_VERSION=0.0.1
 
 # Install uv: https://docs.astral.sh/uv/guides/integration/docker/
 COPY --from=ghcr.io/astral-sh/uv:0.6.0 /uv /uvx /bin/
