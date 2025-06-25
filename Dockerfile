@@ -17,4 +17,5 @@ USER root
 RUN --mount=type=cache,target=/root/.cache/uv \
     uv pip install django-ca-cmc==${DJANGO_CA_CMC_VERSION}
 
+FROM mathiasertl/django-ca:${DJANGO_CA_VERSION}
 COPY --from=build /usr/src/django-ca/.venv/ /usr/src/django-ca/.venv/
