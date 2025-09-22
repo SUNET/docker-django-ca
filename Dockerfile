@@ -4,7 +4,6 @@ ARG DJANGO_CA_CMC_VERSION=0.0.1
 
 # Install uv: https://docs.astral.sh/uv/guides/integration/docker/
 COPY --from=ghcr.io/astral-sh/uv:0.6.0 /uv /uvx /bin/
-COPY --from=docker.sunet.se/luna-client:10.9.0-0.0.2 /usr/safenet/lunaclient/lib/libCryptoki2_64.so /usr/safenet/lunaclient/lib/
 
 # Activate virtual environment
 ENV PATH="/usr/src/django-ca/.venv/bin:$PATH"
@@ -20,3 +19,4 @@ RUN --mount=type=cache,target=/root/.cache/uv \
 
 FROM mathiasertl/django-ca:${DJANGO_CA_VERSION}
 COPY --from=build /usr/src/django-ca/.venv/ /usr/src/django-ca/.venv/
+COPY --from=docker.sunet.se/luna-client:10.9.0-0.0.2 /usr/safenet/lunaclient/lib/libCryptoki2_64.so /usr/safenet/lunaclient/lib/
