@@ -14,12 +14,13 @@ ENV UV_PYTHON_PREFERENCE=only-system
 ENV UV_LINK_MODE=copy
 
 
+USER root
+
 RUN apt-get update
 RUN apt-get install -y git
 RUN apt-get clean && \
   rm -rf /var/lib/apt/lists/*
 
-USER root
 RUN --mount=type=cache,target=/root/.cache/uv \
     uv pip install git+https://github.com/mathiasertl/django-ca-cmc#egg=django-ca-cmc
 
