@@ -15,7 +15,7 @@ ENV UV_LINK_MODE=copy
 
 USER root
 RUN --mount=type=cache,target=/root/.cache/uv \
-    uv pip install django-ca-cmc==${DJANGO_CA_CMC_VERSION}
+    uv pip install git+https://github.com/mathiasertl/django-ca-cmc#egg=django-ca-cmc
 
 FROM mathiasertl/django-ca:${DJANGO_CA_VERSION}
 COPY --from=build /usr/src/django-ca/.venv/ /usr/src/django-ca/.venv/
