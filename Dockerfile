@@ -22,8 +22,11 @@ RUN apt-get clean && \
   rm -rf /var/lib/apt/lists/*
 
 RUN --mount=type=cache,target=/root/.cache/uv \
-    uv pip install git+https://github.com/mathiasertl/django-ca-cmc@ebe1ad116b3bc21a6a5adbe034c8d62155c4f276#egg=django-ca-cmc
+    uv pip install git+https://github.com/mathiasertl/django-ca-cmc@ebe1ad116b3bc21a6a5adbe034c8d62155c4f276#egg=django-ca-cmc \
+      cryptography \
+      josepy
 
 FROM mathiasertl/django-ca:${DJANGO_CA_VERSION}
 COPY --from=build /usr/src/django-ca/.venv/ /usr/src/django-ca/.venv/
 COPY --from=docker.sunet.se/luna-client:10.9.0-0.0.2 /usr/safenet/lunaclient/lib/libCryptoki2_64.so /usr/safenet/lunaclient/lib/
+COPY provision_acme_account.py /usr/src/django-ca/ca/django_ca/management/commands/
